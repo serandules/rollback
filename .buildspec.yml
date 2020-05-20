@@ -14,7 +14,7 @@ phases:
       - docker tag $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$RELEASE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:production
       - echo Pushing the Docker image...
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:production
-      - printf '[{"name":"$IMAGE_REPO_NAME","imageUri":"%s.dkr.ecr.%s.amazonaws.com/%s:production"}]' "$AWS_ACCOUNT_ID" "$AWS_DEFAULT_REGION" "$IMAGE_REPO_NAME"> .codepipeline.json
+      - printf '[{"name":"%s","imageUri":"%s.dkr.ecr.%s.amazonaws.com/%s:production"}]' "$IMAGE_REPO_NAME" "$AWS_ACCOUNT_ID" "$AWS_DEFAULT_REGION" "$IMAGE_REPO_NAME"> .codepipeline.json
   post_build:
     commands:
       - echo Build completed
